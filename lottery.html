@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .big {
+/*            position: relative;*/
+            width: 414px;
+            height: 414px;
+        }
+
+        .small {
+            position: absolute;
+            top: 50%;
+            margin-top: -210px;
+            left: 15%;
+            cursor: pointer;
+            margin-left: -60px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="big">
+
+        <img src="./images/333.png" alt="">
+    </div>
+    <div class="small">
+        <img src="./images/222.png" alt="">
+    </div>
+
+</body>
+
+</html>
+<script src="./js/jquery.min.js"></script>
+<script>
+    $(function() {
+        var ag = 0;
+        var status = 0;
+        $(".small").click(function() {
+
+            ag = Math.round(Math.random() * 360);
+            //0 ~ 1 任意值 Math.ceil Math.floor 向上/下取整		
+            var i = 0;
+            if (status == 0) {
+                status = 1;
+                setInterval(function() {
+                    if (i < ag) {
+                        i++;
+                        $(".big").css({
+                            "transform": "rotateZ(" + i + "deg)"
+                        });
+                    } else {
+                        if (ag > 337 && ag < 360 || ag > 0 && ag <= 22 || ag >= 157 && ag < 202) {
+                            alert("恭喜您中了30元话费！")
+                        } else if (ag >= 22 && ag < 67 || ag >= 202 && ag < 247 ) {
+                            alert("恭喜您中了300M流量！")
+                        } else if (ag >= 67 && ag < 112 || ag >= 247 && ag < 292) {
+                            alert("恭喜你中了100M流量")
+                        } else if (ag >= 112 && ag < 157 || ag >= 292 && ag < 337) {
+                            alert("恭喜您中了500M流量！");
+                        } 
+                        status = 0;
+                        i = 0;
+                        ag = 0;
+                    }
+                }, 1000 / 60)
+            }
+        })
+    })
+
+</script>
